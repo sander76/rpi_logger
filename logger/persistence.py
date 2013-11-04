@@ -9,7 +9,7 @@ import logging
 import threading
 from Queue import Queue
 # import Queue
-
+lgr = logging.getLogger(__name__)
 
 class Persistence(threading.Thread):
     '''
@@ -43,7 +43,7 @@ class Persistence(threading.Thread):
     def run(self):
         while True:
             line = self._logQueue.get()
-            logging.debug("getting a line from the queue")
+            lgr.debug("persistence queue: {}".format(line))
             try:
                 if line['action'] == "close":
                     break

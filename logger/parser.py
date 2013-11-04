@@ -9,7 +9,8 @@ import time
 
 class BaseParser():
     '''
-    Class which is used to interpret incoming raw data and outputs it as a dict.
+    Class which is used to interpret incoming raw
+    data and outputs it as a dict.
     '''
     def __init__(self):
         self.parsed = {}
@@ -17,5 +18,5 @@ class BaseParser():
 
     def parse(self, raw):
         self.parsed['tick'] = time.time()
-        self.time = time.asctime(time.localtime(self.parsed['tick']))
+        self.parsed['time'] = time.asctime(time.localtime(self.parsed['tick']))
         self.raw = raw.strip()
