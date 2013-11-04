@@ -1,0 +1,5 @@
+{
+	"cron_seconds": "*/2",
+	"output": "/media/logger/output.txt",
+	"serialport":"/dev/ttyUSB0"
+}
