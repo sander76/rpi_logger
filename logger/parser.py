@@ -3,20 +3,19 @@ Created on 27 aug. 2013
 
 @author: Teunissen-S
 '''
+from datetime import datetime
+import time
 
 
-class Parser():
+class BaseParser():
+    '''
+    Class which is used to interpret incoming raw data and outputs it as a dict.
+    '''
     def __init__(self):
-        pass
+        self.parsed = {}
+        self.raw = None
 
-    def parse(self, dict_to_parse):
-        if dict_to_parse['status'] == 'error':
-            return '{},{},error {}'.format(dict_to_parse['tm'],
-                                        dict_to_parse['time'],
-                                        dict_to_parse['data'])
-        elif dict_to_parse['status'] == 'ok':
-            value = dict_to_parse['data'][-4:]
-            return '{},{},{},{}'.format(dict_to_parse['tm'],
-                                        dict_to_parse['time'],
-                                        value,
-                                        dict_to_parse['data'])
+    def parse(self, raw):
+        self.parsed['tick'] = time.time()
+        self.time = time.asctime(time.localtime(self.parsed['tick']))
+        self.raw = raw.strip()

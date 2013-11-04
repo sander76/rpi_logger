@@ -1,2 +1,7 @@
 ERROR:root:could not open port /dev/ttyUSB0: [Error 3] Het systeem kan het opgegeven pad niet vinden.
 ERROR:root:could not open port /dev/ttyUSB0: [Error 3] Het systeem kan het opgegeven pad niet vinden.
+ERROR:root:[Errno 2] No such file or directory: '/media/logger/output.txt'
+ERROR:root:[Errno 2] No such file or directory: '/media/logger/output.txt'
+ERROR:root:[Errno 2] No such file or directory: '/media/logger/output.txt'
+ERROR:root:[Errno 2] No such file or directory: '/media/logger/output.txt'
+ERROR:root:[Errno 2] No such file or directory: '/media/logger/output.txt'

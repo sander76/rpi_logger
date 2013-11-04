@@ -7,7 +7,7 @@ Created on 27 aug. 2013
 import time
 import logging
 import threading
-from logger.parser import Parser
+from Queue import Queue
 # import Queue
 
 
@@ -16,13 +16,12 @@ class Persistence(threading.Thread):
     This is the class watching the log input queue, emptying it
     and periodically saving it.
     '''
-    def __init__(self, filename, logQueue, parser, group=None, target=None,
+    def __init__(self, filename, group=None, target=None,
                  name=None, verbose=None):
         threading.Thread.__init__(self, group=group, target=target,
                                   name=name, verbose=verbose)
-        self.parser = parser
         self.filename = filename
-        self.logQueue = logQueue
+        self._logQueue = Queue()
         # the amount of lines being written to memory
         # until a write to a file is made.
         self.bufferedlines = 10
@@ -30,16 +29,29 @@ class Persistence(threading.Thread):
         self.output = None
         self.openfile()
 
+    def persist(self, action, data):
+        '''
+        :param action: what should the persistence do: close, list
+        log
+        :param data: the actual data in case of logging activity.
+        '''
+        self._logQueue.put({'action': action, 'data': data})
+
+    def _returndata(self):
+        raise NotImplemented
+
     def run(self):
         while True:
-            line = self.logQueue.get()
+            line = self._logQueue.get()
             logging.debug("getting a line from the queue")
             try:
-                if line == "close":
+                if line['action'] == "close":
                     break
+                elif line['action'] == "list":
+                    self._returndata()
                 else:
-                    self.save(self.parser.parse(line))
-                    self.logQueue.task_done()
+                    self.save(line['data'])
+                    self._logQueue.task_done()
             except Exception, err:
                 logging.error(err)
 

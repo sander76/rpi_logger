@@ -1,0 +1,40 @@
+test None
+test None
+test None
+test None
+test None
+test None
+test None
+test None
+test None
+test None
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 2, 778000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 19, 589000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 380000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 380000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 390000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 390000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 390000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 390000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 401000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 401000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 401000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 411000), 'data': 'sending motor\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 411000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 421000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 421000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 421000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 421000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 421000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 421000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 421000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 421000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 421000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 421000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 421000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 421000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 22, 781000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 23, 791000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 24, 782000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 25, 792000), 'data': '1\r\n'}
+test {'date': datetime.datetime(2013, 11, 4, 14, 20, 26, 803000), 'data': '1\r\n'}
