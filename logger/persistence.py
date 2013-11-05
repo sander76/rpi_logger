@@ -8,6 +8,10 @@ import time
 import logging
 import threading
 from Queue import Queue
+import shutil
+import os
+import tempfile
+from shutil import copyfileobj
 # import Queue
 lgr = logging.getLogger(__name__)
 
@@ -21,13 +25,14 @@ class Persistence(threading.Thread):
         threading.Thread.__init__(self, group=group, target=target,
                                   name=name, verbose=verbose)
         self.filename = filename
+        self.full_path = os.path.abspath(self.filename)
         self._logQueue = Queue()
+        self.return_queue = Queue()
         # the amount of lines being written to memory
         # until a write to a file is made.
-        self.bufferedlines = 10
-        self.writes = self.bufferedlines
+        self.writebuffer = []
+        self.maxbuffersize = 10
         self.output = None
-        self.openfile()
 
     def persist(self, action, data):
         '''
@@ -37,8 +42,18 @@ class Persistence(threading.Thread):
         '''
         self._logQueue.put({'action': action, 'data': data})
 
+    def getlog(self):
+        self._logQueue.put({'action': 'list', 'data': 0})
+
     def _returndata(self):
-        raise NotImplemented
+        temp_fl = tempfile.NamedTemporaryFile()
+        with open(self.filename, 'r') as fl:
+            copyfileobj(fl, temp_fl)
+#             for l in fl:
+#                 temp_fl.write(l)
+        temp_fl.seek(0, 0)
+        self.return_queue.put(temp_fl)
+        # with open(self.filename,'r') as fl:
 
     def run(self):
         while True:
@@ -49,33 +64,30 @@ class Persistence(threading.Thread):
                     break
                 elif line['action'] == "list":
                     self._returndata()
+
                 else:
                     self.save(line['data'])
-                    self._logQueue.task_done()
+
             except Exception, err:
                 logging.error(err)
+            finally:
+                self._logQueue.task_done()
 
     def openfile(self):
         self.output = open(self.filename, 'a')
 
     def save(self, i):
-        try:
-            # one write less
-            self.writes -= 1
+        # one write less
+        self.writes -= 1
 
-            # write the output to the file
-            self.output.write('test {}\n'.format(i))
+        # add the output to the buffer
+        self.writebuffer.append('test {}\n'.format(i))
 
-            # the amount of writes is zero meaning it is
-            # time to write the changes to the file and close it.
-            if not self.writes:
-                self.writes = self.bufferedlines
+        if len(self.writebuffer) > self.maxbuffersize:
+            with open(self.filename, 'a') as fl:
                 logging.debug('writing to file.')
-                self.output.close()
-                # and re-open it for further writing.
-                self.openfile()
-        except:
-            self.output.close()
+                fl.writelines(self.writebuffer)
+                self.writebuffer = []
 
 
 if __name__ == '__main__':
